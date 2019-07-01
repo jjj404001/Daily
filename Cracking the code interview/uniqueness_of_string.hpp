@@ -1,6 +1,6 @@
 #ifndef UNIQUENESS_OF_STRING
 #define UNIQUENESS_OF_STRING
-#include <iostream>
+#include <string>
 
 #ifndef CHAR_COUNT
 #define CHAR_COUNT 256
