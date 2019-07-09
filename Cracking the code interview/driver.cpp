@@ -1,6 +1,6 @@
 #include <iostream>
 #include "uniqueness_of_string.hpp"
-
+#include "palindrome_permutation.hpp"
 namespace
 {
     void test_uniqueness(std::string const & input)
@@ -8,6 +8,11 @@ namespace
         std::cout << std::boolalpha << std::endl;
         std::cout << input << std::endl;
         std::cout << IsStringUnique(input) << std::endl;
+    }
+
+    void test_palindrome_permutation(std::string const & input)
+    {
+        PalindromePermutation(input);
     }
 
     void test0()
@@ -19,6 +24,12 @@ namespace
         test_uniqueness("Hi, my name is jang jaejun.");
     }
 
+    void test1()
+    {
+        test_palindrome_permutation("pact");
+        test_palindrome_permutation("tcapact");
+    }
+
 }
 
 int main(int argc, char** /* argv*/)
@@ -26,6 +37,14 @@ int main(int argc, char** /* argv*/)
     if(argc <= 1)
     {
         test0();
+        test1();
     }
+    else
+    {
+        
+    }
+    
+
+
     return 0;
 }
