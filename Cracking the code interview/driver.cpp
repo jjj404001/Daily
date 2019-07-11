@@ -27,7 +27,9 @@ namespace
     void test1()
     {
         test_palindrome_permutation("pact");
+        test_palindrome_permutation("abcdefffffedcba");
         test_palindrome_permutation("tcapact");
+        test_palindrome_permutation("aabbaa");
     }
 
 }

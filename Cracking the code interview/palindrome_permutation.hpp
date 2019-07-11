@@ -2,11 +2,12 @@
 #define PALINDROME_PERMUTATION
 #include <iostream>
 #include <algorithm>
+#include <utility>
 #ifndef CHAR_COUNT
 #define CHAR_COUNT 256
 #endif
 
-char IsCanBePalindromePermutation(std::string const & input)
+std::pair<char, unsigned int> IsOddCharExist(std::string const & input)
 {
     char char_counter[CHAR_COUNT] = {};
     unsigned int odd_count = 0;
@@ -21,15 +22,9 @@ char IsCanBePalindromePermutation(std::string const & input)
             odd_char = i;
             odd_count++;
         }
-            
 
 
-    if(odd_count > 1)
-        return '\0';
-
-
-    
-    return odd_char;
+    return std::pair<char, unsigned int>(odd_char, odd_count);
 }
 
 void PopFromString(std::string & input, unsigned int index)
@@ -64,8 +59,8 @@ void BuildPalindromePermutation(char const& odd_char, std::string elements, std:
 
 void PalindromePermutation(std::string const & input)
 {
-    char odd_char = IsCanBePalindromePermutation(input);
-    if(!odd_char)
+    std::pair<char, unsigned int> odd_char = IsOddCharExist(input);
+    if(odd_char.second > 1)
     {
         std::cout << "This string can not be palindrome permutation." << std::endl;
         return;
@@ -77,7 +72,7 @@ void PalindromePermutation(std::string const & input)
     for(char const & character : input)
         table[character]++;
        
-    --table[odd_char];
+    --table[odd_char.first];
 
     for(char const & character : input)
         if(!table_checklist[character]) // Prevent overlap.
@@ -94,7 +89,7 @@ void PalindromePermutation(std::string const & input)
             string.push_back(character);
             table[character]--;
         }
-    BuildPalindromePermutation(odd_char, string, std::string());
+    BuildPalindromePermutation(odd_char.first, string, std::string());
 }
 
 #endif
